@@ -50,13 +50,7 @@ export async function POST(req: Request) {
         const model = genAI.getGenerativeModel({ model: "gemini-pro"});
 
         const prompt = `te voy a dar una frase en ingles y tu trabajo es responder con la frase pero el como la pronunciaria un hispano hablante, ejemplo si te doy "the sheet is there" tu respondes "de shit is dere" o similar.
-        tu siempre vas a responder un JSON valido siguiendo este type de typescript
-        ====
-        Type response = {
-            data: string
-        }
-        ====       
-        simpre json, las palabras son: ${words}`
+        tu siempre vas a responder de esa manera, las palabras son: ${words}`
 
     const result = await model.generateContent(prompt);
     const response = await result.response;
