@@ -14,6 +14,8 @@ export async function POST(req: Request) {
     // Wrap with a try/catch to handle API errors
     const { words } = await req.json();
     try {
+        
+
         const response = await openai.chat.completions.create({
             model: 'gpt-3.5-turbo',
             messages: [
@@ -36,7 +38,6 @@ export async function POST(req: Request) {
             max_tokens: 1024,
             response_format: { type: "json_object" },
         });
-        https://ai.google.dev/pricing
 
         const GPTResponse = JSON.parse(response.choices[0].message.content) as GPTResponse;
 
