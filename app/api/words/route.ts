@@ -10,13 +10,10 @@ type GPTResponse = {
     data: string;
 };
 
-Choose the keyboard language you want to add. You can use the search bar to find it if that’s easier for you.
 export async function POST(req: Request) {
     // Wrap with a try/catch to handle API errors
     const { words } = await req.json();
     try {
-        
-
         const response = await openai.chat.completions.create({
             model: 'gpt-3.5-turbo',
             messages: [
