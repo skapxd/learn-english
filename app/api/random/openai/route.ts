@@ -1,3 +1,4 @@
+import { RandomResponse } from "@/custom-types";
 import { temas } from "@/utils/const";
 import { NextResponse } from "next/server";
 import OpenAI from "openai";
@@ -5,11 +6,6 @@ import OpenAI from "openai";
 const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY! })
 // IMPORTANT! Set the runtime to edge
 export const runtime = 'edge';
-
-
-type GPTResponse = {
-    data: string;
-};
 
 
 export async function POST(req: Request) {
@@ -25,7 +21,7 @@ export async function POST(req: Request) {
 
                     tu siempre vas a responder un JSON valido siguiendo este type de typescript
                     ====
-                    Type response = {
+                    type response = {
                         tema: string;
                         oracionEnIngles: string;
                         oracionDeAyuda: string;
@@ -41,7 +37,7 @@ export async function POST(req: Request) {
             response_format: { type: "json_object" },
         });
 
-        const GPTResponse = JSON.parse(response.choices[0].message.content) as GPTResponse;
+        const GPTResponse = JSON.parse(response.choices[0].message.content as unknown) as RandomResponse;
 
         console.log(GPTResponse)
         return NextResponse.json({ ...GPTResponse });

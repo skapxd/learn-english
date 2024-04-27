@@ -10,16 +10,20 @@ export async function POST(req: Request) {
     const temaSeleccionado = temas[Math.floor(Math.random() * temas.length)];
     console.log(temaSeleccionado);
 
-    const prompt = `Genera una oración en ingles completa sobre este tema ${temaSeleccionado}`;
-    const text = await generateContent(prompt);
+    const promptDeTema = `Genera una oración en ingles completa sobre este tema ${temaSeleccionado}`;
+    const tema = await generateContent(promptDeTema);
 
-    const prompt2 = `Tu trabajo es responder con la oración pero de el modo como se debe pronunciar en ingles pero escrito para que un hispano hablante sepa como pronunciar las palabras, algo similar a lo que hace el Pinyin para el Hanzi, ejemplo si te doy "the sheet is there" tu respondes "de shit is dere" muy similar a como funciona el Pinyi, la idea es hacer esto pero con el ingles para hispano hablantes.
+    const prompt = `Tu trabajo es responder con la oración pero de el modo como se debe pronunciar en ingles pero escrito para que un hispano hablante sepa como pronunciar las palabras, algo similar a lo que hace el Pinyin para el Hanzi, ejemplo si te doy "the sheet is there" tu respondes "de shit is dere" muy similar a como funciona el Pinyi, la idea es hacer esto pero con el ingles para hispano hablantes.
     Las palabras son:
-    "${text}"`;
-    const text2 = await generateContent(prompt2);
+    "${tema}"`;
+    const oracionDeAyuda = await generateContent(prompt);
 
-    console.log(text);
-    return NextResponse.json({ data: text, data2: text2 });
+    console.log(oracionDeAyuda);
+    return NextResponse.json({ 
+      tema: temaSeleccionado,
+      oracionEnIngles: tema,
+      oracionDeAyuda,
+    });
   } catch (error) {
     console.log(error);
     return NextResponse.json(error);
