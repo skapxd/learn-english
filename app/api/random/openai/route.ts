@@ -21,17 +21,18 @@ export async function POST(req: Request) {
             messages: [
                 {
                     role: 'system',
-                    content: `Genera una oracion en ingles completa sobre este tema ${temaSeleccionado}, tu trabajo es responder con la frase pero el como la pronunciaria un hispano hablante, ejemplo si te doy "the sheet is there" tu respondes "de shit is dere" o similar.
+                    content: `Genera una oracion en ingles completa sobre este tema ${temaSeleccionado}, Tu trabajo es responder con la oración pero de el modo como se debe pronunciar en ingles pero escrito para que un hispano hablante sepa como pronunciar las palabras, algo similar a lo que hace el Pinyin para el Hanzi, ejemplo si te doy "the sheet is there" tu respondes "de shit is dere" muy similar a como funciona el Pinyi, la idea es hacer esto pero con el ingles para hispano hablantes.
 
                     tu siempre vas a responder un JSON valido siguiendo este type de typescript
                     ====
                     Type response = {
-                        tema: string
-                        texto: string
+                        tema: string;
+                        oracion: string;
+                        oracionDeAyuda: string;
                     }
                     ====
                     
-                    siempre JSON.`,
+                    siempre responde en JSON.`,
                     name: 'system',
                 },
             ],
