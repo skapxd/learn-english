@@ -39,7 +39,7 @@ export async function POST(req: Request) {
             response_format: { type: "json_object" },
         });
 
-        const GPTResponse = JSON.parse(response.choices[0].message.content) as GPTResponse;
+        const GPTResponse = JSON.parse(response.choices[0].message.content as any) as GPTResponse;
 
         console.log(GPTResponse)
         return NextResponse.json({ ...GPTResponse });

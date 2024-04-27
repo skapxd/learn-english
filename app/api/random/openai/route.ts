@@ -37,7 +37,7 @@ export async function POST(req: Request) {
             response_format: { type: "json_object" },
         });
 
-        const GPTResponse = JSON.parse(response.choices[0].message.content as unknown) as RandomResponse;
+        const GPTResponse = JSON.parse(response.choices[0].message.content as any) as RandomResponse;
 
         console.log(GPTResponse)
         return NextResponse.json({ ...GPTResponse });

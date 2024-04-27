@@ -36,9 +36,8 @@ export async function POST(req: Request) {
             max_tokens: 1024,
             response_format: { type: "json_object" },
         });
-        https://ai.google.dev/pricing
 
-        const GPTResponse = JSON.parse(response.choices[0].message.content) as GPTResponse;
+        const GPTResponse = JSON.parse(response.choices[0].message.content!) as GPTResponse;
 
         console.log(GPTResponse)
         return NextResponse.json({ ...GPTResponse });
