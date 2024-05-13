@@ -13,7 +13,15 @@ export async function POST(req: Request) {
     const promptDeTema = `Genera una oración en ingles completa sobre este tema ${temaSeleccionado}`;
     const tema = await generateContent(promptDeTema);
 
-    const prompt = `Tu trabajo es responder con la oración pero de el modo como se debe pronunciar en ingles pero escrito para que un hispano hablante sepa como pronunciar las palabras, algo similar a lo que hace el Pinyin para el Hanzi, ejemplo si te doy "the sheet is there" tu respondes "de shit is dere" muy similar a como funciona el Pinyi, la idea es hacer esto pero con el ingles para hispano hablantes.
+    const prompt = `Tu trabajo es responder con la oración pero de el modo como se debe pronunciar en ingles pero escrito para que un hispano hablante sepa como pronunciar las palabras, algo similar a lo que hace el Pinyin para el Hanzi, ejemplo si te doy  tu respondes muy similar a como funciona el Pinyi, la idea es hacer esto pero con el ingles para hispano hablantes.
+    1-ingles: "the sheet is there"
+    1-español: "de shiit is dere"
+    2-ingles: "connection with the divine"
+    2-español: "conectchion guiz de divain"
+    3-ingles: "their financial goals"
+    3-español: "deir fainanshal gols"
+    4-ingles: "games"
+    4-español: "gueims"
     Las palabras son:
     "${tema}"`;
     const oracionDeAyuda = await generateContent(prompt);
